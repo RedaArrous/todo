@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'todo/home.css' %}" />
+        <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close,edit_note,notifications"
+        />
+        <title>Todo List</title>
+        <style>
+            body {
+                background: linear-gradient(135deg, #bf926b 0%, #03314e 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            .modal-content {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.95));
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+                max-width: 700px;
+                width: 90%;
+                margin: 40px auto;
+                padding: 40px;
+            }
+            h3 {
+                color: #012840;
+                margin-bottom: 30px;
+                font-size: 2.2rem;
+                text-align: center;
+            }
+            .form-group {
+                margin-bottom: 25px;
+            }
+            .form-group label {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            .form-group input, 
+            .form-group select {
+                font-size: 1.3rem;
+                padding: 15px;
+            }
+            .save-btn {
+                padding: 18px 50px;
+                font-size: 1.4rem;
+                margin-top: 20px;
+                background-color: #03314e;
+                color: white;
+                border: none;
+                border-radius: 40px;
+                cursor: pointer;
+                width: 100%;
+                transition: background-color 0.3s ease;
+            }
+            .save-btn:hover {
+                background-color: #055381;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="modal-content">
+            <h3>Edit To-Do List</h3>
+            <form action="{% url 'todo:edit' todo.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="editTask1">Title:</label>
+                    <input type="text" id="editTask1" name="title" value="{{todo.title}}" required />
+                </div>
+                <div class="form-group">
+                    <label for="editCategory1">Category:</label>
+                    <input type="text" id="editCategory1" name="category" value="{{todo.category}}" />
+                </div>
+                <div class="form-group">
+                    <label for="editImportance1">Importancy:</label>
+                    <select id="editImportance1" name="importancy">
+                        <option value="Low" {% if todo.importancy == "Low" %}selected{% endif %}>Low</option>
+                        <option value="Medium" {% if todo.importancy == "Medium" %}selected{% endif %}>Medium</option>
+                        <option value="High" {% if todo.importancy == "High" %}selected{% endif %}>High</option>
+                    </select>
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:cursive,serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    text-align: center;
+    padding: 30px;
+
+}
+.container {
+    margin-top: 3rem;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+p{
+    font-size: 1.6rem;
+}
+
+button{
+    width: 56%;
+    border-radius: 24px;
+    background-color: #BF926B;
+    border: none;
+    border: 1px solid #816750;
+    cursor: pointer;
+    padding: 10px;
+}
+
+button:hover{
+    background-color: #d1ab8a;
+}
+a{
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-color: none;
+    color: black;
+    font-size: 1.2rem;
+
+}
+
+h1{
+    padding: 1rem;
+    margin-top: 3rem;
+    font-size: 2.1rem;
+}
+        </style>
+        <title>Todo List</title>
+    </head>
+    <body>
+        <section class="todo">
+        <h1>Welcome</h1>
+        <div class="container">
+            <p>The to-do-list</p>
+            <button><a href="{% url 'todo:home' %}">Start</a></button>
+        </div>
+        </section>
+    </body>
+</html>

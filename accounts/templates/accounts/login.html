@@ -1,0 +1,120 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todo List</title>
+	</head>
+	<body>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: cursive, serif;
+			}			body {
+				font-family: Arial, sans-serif;
+				background: linear-gradient(135deg, #bf926b 0%, #03314e 100%);
+				background-size: cover;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 20px;
+				margin: 0;
+				padding: 20px;
+			}
+			section {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				flex-direction: column;
+				position: relative;
+				width: 350px;
+				height: 350px;
+				background: #F2F2F2;
+				backdrop-filter: blur(10px);
+				border-radius: 8px;
+				border: 1px solid rgba(255, 255, 255, 0.18);
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+				text-align: center;
+				padding: 30px;
+			}
+			h1 {
+				font-size: 3rem;
+			}
+			.container {
+				padding: 5px;
+				margin: 20px;
+			}
+
+			input {
+				width: 100%;
+				padding: 10px;
+				margin: 10px 0;
+				border: 1px solid #ccc;
+				border-radius: 12px;
+			}
+
+			input:focus {
+				border-color: #bf926b;
+				outline: none;
+			}
+
+			button:hover {
+				background-color: #d1ab8a;
+			}
+			button {
+				width: 56%;
+				border-radius: 24px;
+				background-color: #bf926b;
+				border: none;
+				border: 1px solid #816750;
+				cursor: pointer;
+				padding: 10px;
+			}
+
+			p{
+				margin-top: 0.5rem;
+			}
+			a{
+				color:#064369 ;
+				text-decoration: none;
+			}
+			a:hover{
+				color: #bf926b;
+			}
+		</style>        
+        {% if messages %}
+            {%for message in messages%}
+                <p style="font-size: 20px; font-weight: bold; color: #FFB4A2; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); background-color: rgba(139, 69, 19, 0.6); padding: 10px 20px; border-radius: 8px; margin: 10px; flex-basis: 100%" >{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+		<section>
+			<h1>Welcome</h1>
+			<div class="container">
+                
+				<form method="POST" action="{% url 'accounts:login' %}">
+				{% csrf_token %}
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" placeholder="example.name" autofocus required>
+
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" placeholder="example.pass" required>
+
+					<button type="submit">Login</button>
+
+					<p>Don't have an account? <a href="{% url "accounts:signup" %}">Sign up</a></p>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>
